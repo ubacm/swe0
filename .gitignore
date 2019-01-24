@@ -1,0 +1,11 @@
+# PyCharm
+.idea
+
+# Python virtual environments
+.venv
+
+# Python bytecode
+__pycache__
+
+# SQLite database file
+db.sqlite3
