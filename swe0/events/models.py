@@ -44,7 +44,7 @@ class Event(models.Model):
                 length=6,
                 allowed_chars=cls.CHECK_IN_CODE_ALLOWED_CHARS,
             )
-            if not cls.objects.filter(attendance_code=code).exists():
+            if not cls.objects.filter(check_in_code=code).exists():
                 return code
 
 
@@ -55,6 +55,7 @@ class CheckIn(models.Model):
 
     class Meta:
         unique_together = ('event', 'user')
+        verbose_name = 'check-in'
 
     def __str__(self):
         return '{} at {}'.format(self.user, self.event)
