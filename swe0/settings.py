@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'social_django',
     'swe0.accounts',
     'swe0.events',
+    'swe0.profiles',
 ]
 
 MIDDLEWARE = [
