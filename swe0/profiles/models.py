@@ -25,3 +25,6 @@ class Profile(models.Model):
         validators=[FileExtensionValidator(['pdf'])],
         blank=True,
     )
+
+    def __str__(self):
+        return 'Profile for {}'.format(self.user)
