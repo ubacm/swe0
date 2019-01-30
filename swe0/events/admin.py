@@ -1,3 +1,7 @@
 from django.contrib import admin
 
-# Register your models here.
+from swe0.events import models
+
+
+admin.site.register(models.CheckIn)
+admin.site.register(models.Event)
