@@ -1,0 +1,35 @@
+{% load static %}
+
+<div class="component__header">
+  <div class="container">
+    <div class="wrapper">
+      <div class="branding">
+        <a href="/">
+          <img class="logo" src="{% static 'assets/swe0.png' %}" alt="UB ACM swe0 logo">
+        </a>
+        <div class="text_branding">Apps</div>
+      </div>
+      <div class="navigation">
+        <ul class="links">
+          <li><a href="https://ubacm.org/">Back to UB ACM</a></li>
+        </ul>
+        <ul class="links hide_mobile">
+          {% if user.is_authenticated %}
+            <li>{{ user }}</li>
+          {% else %}
+            <li>You are not logged in</li>
+          {% endif %}
+        </ul>
+        <ul class="links">
+          {% if user.is_authenticated %}
+            {# TODO: Specify log out URL once the view is created #}
+            <li><a href="#">Log Out</a></li>
+          {% else %}
+            {# TODO: Specify log in URL once the view is created #}
+            <li><a href="#">Log In</a></li>
+          {% endif %}
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
