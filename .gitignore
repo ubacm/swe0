@@ -9,3 +9,6 @@ __pycache__
 
 # SQLite database file
 db.sqlite3
+
+# User-uploaded files
+media
