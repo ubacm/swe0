@@ -14,7 +14,12 @@ class Event(models.Model):
     end_time = models.DateTimeField(blank=True, null=True)
 
     check_in_enabled = models.BooleanField(default=False)
-    check_in_code = models.CharField(max_length=25, unique=True, blank=True)
+    check_in_code = models.CharField(
+        max_length=25,
+        unique=True,
+        blank=True,
+        help_text='If empty, a code will automatically be generated.',
+    )
     check_in_rewards = models.IntegerField(default=1)
 
     # Attempt to eliminate potentially confusing characters.
