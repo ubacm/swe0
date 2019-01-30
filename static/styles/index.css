@@ -1,0 +1,45 @@
+.auth_sign_in {
+  background: #1a1a1a;
+  border-radius: 6px;
+  display: inline-block;
+  padding: 44px;
+}
+
+.auth_sign_in .buttons {
+  margin-top: 20px;
+}
+
+.auth_sign_in .buttons a {
+  display: block;
+  padding-top: 10px;
+  text-decoration: none;
+}
+
+.auth_sign_in .buttons a img {
+  display: inline-block;
+  height: 40px;
+  width: 172px;
+}
+
+.dialog {
+  margin: 0 auto;
+  text-align: center;
+  width: 100%;
+}
+
+.component__header {
+  border-bottom-color: #1a1a1a
+}
+
+.text_branding {
+  color: #1a1a1a;
+  padding-left: 85px;
+  font-size: 18px;
+  font-weight: 700;
+}
+
+@media (max-width: 550px) {
+  .text_branding {
+    display: none;
+  }
+}
