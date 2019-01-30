@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+
+{% block title %}Upload Resume{% endblock %}
+
+{% block content %}
+  {# TODO: update the following line with its equivalent when available #}
+  {# <a href="{{ url_for('.index') }}">&lt; Back to Resumes</a> #}
+  <br>
+  <br>
+  <h1>Upload Resume</h1>
+  <p>Upload your resume here to be included in the chapter resume book.</p>
+  <br>
+  <form method="post" enctype="multipart/form-data">
+    <label>
+      <input type="file" name="resume" required accept=".pdf, application/pdf">
+    </label>
+    <button class="button button_primary">Upload</button>
+  </form>
+{% endblock %}
