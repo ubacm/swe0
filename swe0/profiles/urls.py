@@ -6,5 +6,5 @@ from swe0.profiles import views
 app_name = 'profiles'
 
 urlpatterns = [
-    path('upload-resume/', views.ResumeUploadView.as_view(), name='resume-upload')
+    path('upload-resume/', views.ResumeUploadView.as_view(), name='resume-upload'),
 ]
