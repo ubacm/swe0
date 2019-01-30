@@ -2,6 +2,7 @@ import itertools
 
 from django.conf import settings
 from django.db import models
+from django.utils import timezone
 from django.utils.crypto import get_random_string
 
 
@@ -45,6 +46,7 @@ class Event(models.Model):
 class CheckIn(models.Model):
     event = models.ForeignKey(Event, on_delete=models.CASCADE)
     user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
+    time = models.DateTimeField(default=timezone.now)
 
     class Meta:
         unique_together = ('event', 'user')
