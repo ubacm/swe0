@@ -165,6 +165,9 @@ MEDIA_URL = '/media/'
 SWE0_CREATE_USER_WHITELISTED_DOMAINS = ['buffalo.edu']
 
 
+# API token for making requests to Slack.
+SWE0_SLACK_API_TOKEN = os.getenv('SLACK_API_TOKEN')
+
 # Used to verify requests from Slack
 # See https://api.slack.com/docs/verifying-requests-from-slack
 SWE0_SLACK_SIGNING_SECRET = os.getenv('SLACK_SIGNING_SECRET')

@@ -14,12 +14,9 @@ class CheckInView(LoginRequiredMixin, FormView):
 
     def form_valid(self, form):
         # Assuming the needed Event exists since we already performed validation.
-        checked_in = CheckIn.using_code(
+        result = CheckIn.using_code(
             form.cleaned_data['check_in_code'],
             self.request.user,
         )
-        if checked_in:
-            messages.success(self.request, 'You have successfully checked in.')
-        else:
-            messages.success(self.request, 'You had already checked in.')
+        messages.success(self.request, result.message)
         return super().form_valid(form)

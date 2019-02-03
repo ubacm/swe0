@@ -1,9 +1,13 @@
+from collections import namedtuple
 import itertools
 
 from django.conf import settings
 from django.db import models
 from django.utils import timezone
 from django.utils.crypto import get_random_string
+
+
+CheckInResult = namedtuple('CheckInResult', ['is_checked_in', 'message'])
 
 
 class Event(models.Model):
@@ -61,11 +65,14 @@ class CheckIn(models.Model):
         return '{} at {}'.format(self.user, self.event)
 
     @classmethod
-    def using_code(cls, check_in_code, user):
-        event = Event.objects.get(
-            check_in_enabled=True,
-            check_in_code=check_in_code,
-        )
-        if event:
-            obj, created = cls.objects.get_or_create(event=event, user=user)
-            return created
+    def using_code(cls, check_in_code, user) -> CheckInResult:
+        event = Event.objects.get(check_in_code=check_in_code)
+        if event is None:
+            return CheckInResult(False, 'The check-in code is invalid.')
+        if not event.check_in_enabled:
+            return CheckInResult(False, 'The event is not currently accepting check-ins.')
+
+        obj, created = cls.objects.get_or_create(event=event, user=user)
+        if created:
+            return CheckInResult(True, 'You have successfully checked in.')
+        return CheckInResult(True, 'You had already checked in.')
