@@ -163,3 +163,8 @@ MEDIA_URL = '/media/'
 # If provided, only users whose email address domain is included here
 # will be able to create their own user accounts.
 SWE0_CREATE_USER_WHITELISTED_DOMAINS = ['buffalo.edu']
+
+
+# Used to verify requests from Slack
+# See https://api.slack.com/docs/verifying-requests-from-slack
+SWE0_SLACK_SIGNING_SECRET = os.getenv('SLACK_SIGNING_SECRET')
