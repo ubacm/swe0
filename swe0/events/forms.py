@@ -1,6 +1,6 @@
 from django import forms
 
-from swe0.events.models import CheckIn, Event
+from swe0.events.models import Event
 
 
 class CheckInForm(forms.Form):
@@ -19,12 +19,3 @@ class CheckInForm(forms.Form):
                 'The event is not currently accepting check-ins.'
             )
         return check_in_code
-
-    def check_in(self, user):
-        event = Event.objects.get(
-            check_in_enabled=True,
-            check_in_code=self.cleaned_data['check_in_code'],
-        )
-        if event:
-            obj, created = CheckIn.objects.get_or_create(event=event, user=user)
-            return created

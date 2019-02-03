@@ -33,11 +33,11 @@ class Event(models.Model):
 
     def save(self, *args, **kwargs):
         if not self.check_in_code:
-            self.check_in_code = self.generate_check_in_code()
+            self.check_in_code = self._generate_check_in_code()
         return super().save(*args, **kwargs)
 
     @classmethod
-    def generate_check_in_code(cls):
+    def _generate_check_in_code(cls):
         """Generate a unique check in code for an Event."""
         for _ in itertools.count():
             code = get_random_string(
@@ -59,3 +59,13 @@ class CheckIn(models.Model):
 
     def __str__(self):
         return '{} at {}'.format(self.user, self.event)
+
+    @classmethod
+    def using_code(cls, check_in_code, user):
+        event = Event.objects.get(
+            check_in_enabled=True,
+            check_in_code=check_in_code,
+        )
+        if event:
+            obj, created = cls.objects.get_or_create(event=event, user=user)
+            return created
