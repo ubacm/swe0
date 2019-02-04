@@ -12,6 +12,9 @@ https://docs.djangoproject.com/en/2.1/ref/settings/
 
 import os
 
+import dj_database_url
+
+
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
@@ -20,7 +23,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # See https://docs.djangoproject.com/en/2.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = ')m2y-(#as&1vb6+^g!w(^%mhh#@5x1)dc7lpb6@#_drcv$ac7)'
+SECRET_KEY = os.getenv('SECRET_KEY', ')m2y-(#as&1vb6+^g!w(^%mhh#@5x1)dc7lpb6@#_drcv$ac7)')
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -80,11 +83,11 @@ WSGI_APPLICATION = 'swe0.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/2.1/ref/settings/#databases
 
+# Override by specifying the DATABASE_URL environment variable.
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
-    }
+    'default': dj_database_url.config(
+        default='sqlite:///{}'.format(os.path.join(BASE_DIR, 'db.sqlite3')),
+    ),
 }
 
 

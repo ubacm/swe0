@@ -6,6 +6,7 @@ verify_ssl = true
 [dev-packages]
 
 [packages]
+dj-database-url = "*"
 django = "*"
 requests = "*"
 social-auth-app-django = "*"
