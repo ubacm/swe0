@@ -1,3 +1,5 @@
-from django.shortcuts import render
+from django.contrib.auth.views import LogoutView as DjangoLogOutView
 
-# Create your views here.
+
+class LogOutView(DjangoLogOutView):
+    next_page = 'core:home'
