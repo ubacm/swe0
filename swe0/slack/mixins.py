@@ -38,4 +38,4 @@ def _verify_slack_signature(request):
     actual_signature = request.META.get('HTTP_X_SLACK_SIGNATURE', '')
 
     if not hmac.compare_digest(expected_signature, actual_signature):
-        raise PermissionDenied
+        raise SuspiciousOperation
