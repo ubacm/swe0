@@ -22,11 +22,9 @@
         </ul>
         <ul class="links">
           {% if user.is_authenticated %}
-            {# TODO: Specify log out URL once the view is created #}
-            <li><a href="#">Log Out</a></li>
+            <li><a href="{% url 'accounts:log-out' %}">Log Out</a></li>
           {% else %}
-            {# TODO: Specify log in URL once the view is created #}
-            <li><a href="#">Log In</a></li>
+            <li><a href="{% url 'accounts:log-in' %}">Log In</a></li>
           {% endif %}
         </ul>
       </div>
