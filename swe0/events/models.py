@@ -66,9 +66,11 @@ class CheckIn(models.Model):
 
     @classmethod
     def using_code(cls, check_in_code, user) -> CheckInResult:
-        event = Event.objects.get(check_in_code=check_in_code)
-        if event is None:
+        try:
+            event = Event.objects.get(check_in_code=check_in_code)
+        except Event.DoesNotExist:
             return CheckInResult(False, 'The check-in code is invalid.')
+
         if not event.check_in_enabled:
             return CheckInResult(False, 'The event is not currently accepting check-ins.')
 
