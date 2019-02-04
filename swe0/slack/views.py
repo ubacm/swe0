@@ -29,8 +29,9 @@ class CheckInView(VerifySlackMixin, View):
             raise PermissionDenied
 
         email = slack_profile['email']
-        user = User.objects.filter(email=email)
-        if user is None:
+        try:
+            user = User.objects.filter(email=email).first()
+        except User.DoesNotExist:
             if not email_address_is_whitelisted(email):
                 raise PermissionDenied
             user = User.objects.create_user(email=email, name=slack_profile['real_name'])
