@@ -1,0 +1,22 @@
+version: 2
+jobs:
+  build:
+    working_directory: ~/swe0
+    docker:
+      - image: circleci/python:3.7
+        environment:
+          PIPENV_VENV_IN_PROJECT: true
+          DATABASE_URL: postgresql://root@localhost/swe0?sslmode=disable
+      - image: circleci/postgres:11.1
+        environment:
+          POSTGRES_USER: root
+          POSTGRES_DB: swe0
+    steps:
+      - checkout
+      - run:
+          command: |
+            pip install --user pipenv
+            pipenv sync
+            pipenv run python manage.py test
+      - store_test_results:
+          path: test-results
