@@ -14,9 +14,10 @@ jobs:
     steps:
       - checkout
       - run:
+          name: Install pipenv and dependencies
           command: |
             pip install --user pipenv
             pipenv sync
-            pipenv run python manage.py test
-      - store_test_results:
-          path: test-results
+      - run:
+          name: Run tests
+          command: pipenv run python manage.py test
