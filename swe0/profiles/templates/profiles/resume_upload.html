@@ -11,6 +11,7 @@
   <p>Upload your resume here to be included in the chapter resume book.</p>
   <br>
   <form method="post" enctype="multipart/form-data">
+    {% csrf_token %}
     <label>
       <input type="file" name="resume" required accept=".pdf, application/pdf">
     </label>
