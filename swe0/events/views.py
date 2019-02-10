@@ -1,10 +1,10 @@
 from django.contrib import messages
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.urls import reverse_lazy
-from django.views.generic import FormView
+from django.views.generic import FormView, ListView
 
 from swe0.events.forms import CheckInForm
-from swe0.events.models import CheckIn
+from swe0.events.models import CheckIn, Event
 
 
 class CheckInView(LoginRequiredMixin, FormView):
@@ -20,3 +20,7 @@ class CheckInView(LoginRequiredMixin, FormView):
         )
         messages.success(self.request, result.message)
         return super().form_valid(form)
+
+
+class EventListView(ListView):
+    model = Event
