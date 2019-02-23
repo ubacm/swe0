@@ -30,7 +30,7 @@ class Event(models.Model):
     CHECK_IN_CODE_ALLOWED_CHARS = 'ABDEFGHJMNPQRTYabdefghjmnpqrty23456789'
 
     class Meta:
-        ordering = ('start_time', 'end_time', 'title')
+        ordering = ('-start_time', '-end_time', 'title')
 
     def __str__(self):
         return self.title
