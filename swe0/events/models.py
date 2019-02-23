@@ -72,9 +72,18 @@ class CheckIn(models.Model):
             return CheckInResult(False, 'The check-in code is invalid.')
 
         if not event.check_in_enabled:
-            return CheckInResult(False, 'The event is not currently accepting check-ins.')
+            return CheckInResult(
+                False,
+                'The event {!r} is not currently accepting check-ins.'.format(event.title),
+            )
 
         obj, created = cls.objects.get_or_create(event=event, user=user)
         if created:
-            return CheckInResult(True, 'You have successfully checked in.')
-        return CheckInResult(True, 'You had already checked in.')
+            return CheckInResult(
+                True,
+                'You have successfully checked in to {!r}.'.format(event.title),
+            )
+        return CheckInResult(
+            True,
+            'You had already checked in to {!r}.'.format(event.title),
+        )
