@@ -9,6 +9,9 @@
   <br>
   <h1>Upload Resume</h1>
   <p>Upload your resume here to be included in the chapter resume book.</p>
+  {% if profile.resume %}
+    <p><a href="{{ profile.resume.url }}">View current resume</a></p>
+  {% endif %}
   <br>
   <form method="post" enctype="multipart/form-data">
     {% csrf_token %}
