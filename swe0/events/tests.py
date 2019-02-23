@@ -57,3 +57,14 @@ class CheckInTests(TestCase):
     def test_unauthenticated(self):
         self.client.post('/events/check-in/', {'check_in_code': 'test'})
         self.assertEqual(CheckIn.objects.count(), 0)
+
+
+class EventTests(TestCase):
+
+    def test_generate_check_in_code(self):
+        event = Event.objects.create(title='Test')
+        self.assertEqual(len(event.check_in_code), 5)
+
+    def test_existing_check_in_code(self):
+        event = Event.objects.create(title='Test', check_in_code='test')
+        self.assertEqual(event.check_in_code, 'test')

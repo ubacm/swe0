@@ -45,7 +45,7 @@ class Event(models.Model):
         """Generate a unique check in code for an Event."""
         for _ in itertools.count():
             code = get_random_string(
-                length=6,
+                length=5,
                 allowed_chars=cls.CHECK_IN_CODE_ALLOWED_CHARS,
             )
             if not cls.objects.filter(check_in_code=code).exists():
