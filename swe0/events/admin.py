@@ -6,6 +6,7 @@ from swe0.events import models
 @admin.register(models.CheckIn)
 class CheckInAdmin(admin.ModelAdmin):
     list_display = ('time', 'event', 'user')
+    list_filter = ('event',)
 
 
 @admin.register(models.Event)
