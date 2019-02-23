@@ -12,9 +12,9 @@ CheckInResult = namedtuple('CheckInResult', ['is_checked_in', 'message'])
 
 class Event(models.Model):
     title = models.CharField(max_length=100)
-    description = models.TextField()
+    description = models.TextField(blank=True)
     location = models.CharField(max_length=50, blank=True)
-    start_time = models.DateTimeField()
+    start_time = models.DateTimeField(blank=True, null=True)
     end_time = models.DateTimeField(blank=True, null=True)
 
     check_in_enabled = models.BooleanField(default=False)
