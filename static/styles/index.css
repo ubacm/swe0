@@ -48,22 +48,18 @@ body {
   display: inline-block;
   padding: 44px;
 }
-
 .auth_sign_in .buttons {
   margin-top: 20px;
 }
-
 .auth_sign_in .buttons a {
   display: block;
   padding-top: 10px;
   text-decoration: none;
 }
-
 .auth_sign_in .buttons a img {
   display: inline-block;
   width: 172px;
 }
-
 .dialog {
   margin: 0 auto;
   text-align: center;
