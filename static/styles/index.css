@@ -1,5 +1,49 @@
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Roboto";
+}
+
+.card.chapter_app {
+  height: 200px;
+}
+.card.chapter_app .card-action {
+  bottom: 0;
+  left: 0;
+  position: absolute;
+  right: 0;
+}
+
+.content {
+  background-color: inherit;
+  overflow: auto;
+}
+.content.more_padding {
+  padding: 30px 0 60px 0;
+}
+.content img {
+  width: 100%;
+  height: auto;
+}
+.content ul:not(.browser-default) > li {
+  list-style-type: disc;
+  margin-left: 20px;
+}
+
+.user {
+  align-items: center;
+  display: flex;
+  margin-bottom: 20px;
+}
+.login_status {
+  margin-left: 20px;
+}
+
 .auth_sign_in {
-  background: #1a1a1a;
   border-radius: 6px;
   display: inline-block;
   padding: 44px;
@@ -24,21 +68,4 @@
   margin: 0 auto;
   text-align: center;
   width: 100%;
-}
-
-.component__header {
-  border-bottom-color: #1a1a1a
-}
-
-.text_branding {
-  color: #1a1a1a;
-  padding-left: 85px;
-  font-size: 18px;
-  font-weight: 700;
-}
-
-@media (max-width: 550px) {
-  .text_branding {
-    display: none;
-  }
 }

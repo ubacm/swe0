@@ -1,0 +1,72 @@
+.navbar-fixed {
+  height: 44px;
+}
+nav {
+  background-color: #fff;
+  height: 44px;
+  line-height: 44px;
+  transform: translate(0);
+}
+nav .brand-logo {
+  position: absolute;
+  font-size: 22px;
+  font-weight: 700;
+}
+nav .brand-logo span.branding {
+  color: #005bbb;
+  margin-left: 75px;
+}
+nav .brand-logo img.logo {
+  margin-top: 2px;
+  position: absolute;
+  height: 50px;
+  width: auto;
+  z-index: 100;
+}
+nav ul > li > a {
+  color: #26a69a;
+  font-size: 18px;
+  font-weight: 700;
+}
+nav,
+nav .nav-wrapper i,
+nav a.sidenav-trigger,
+nav a.sidenav-trigger i {
+  color: #26a69a;
+  height: 44px;
+  line-height: 44px;
+}
+.sidenav {
+  height: 100% !important;
+}
+.sidenav .user-view {
+  align-items: flex-end;
+  display: flex;
+  height: 180px;
+}
+.sidenav .user-view h4 {
+  font-weight: 700;
+}
+.sidenav .user-view .background > img {
+  width: 100%;
+}
+.sidenav li > a > i,
+.sidenav li > a > [class^="mdi-"],
+.sidenav li > a li > a > [class*="mdi-"],
+.sidenav li > a > i.material-icons {
+  float: left;
+  height: 48px;
+  line-height: 48px;
+  margin-right: 20px;
+  width: 24px;
+  color: rgba(0, 0, 0, 0.54);
+}
+.img_icon {
+  height: 11px;
+  width: auto;
+}
+@media screen and (min-width: 1000px) {
+  .brand-logo {
+    margin-left: 50px;
+  }
+}

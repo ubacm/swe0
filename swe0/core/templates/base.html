@@ -6,21 +6,27 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>{% block title %}swe0{% endblock %}</title>
-  <link rel="stylesheet" type="text/css" href="{% static 'styles/electricblue.min.css' %}">
+  <link rel="stylesheet" type="text/css" href="{% static 'styles/materialize-css/css/materialize.min.css' %}">
   <link rel="stylesheet" type="text/css" href="{% static 'styles/index.css' %}">
+  <link rel="stylesheet" type="text/css" href="{% static 'styles/header.css' %}">
+  <link href="https://use.fontawesome.com/releases/v5.0.2/css/all.css" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Roboto|Roboto+Mono:400,700" rel="stylesheet"> 
+  <script src="{% static 'styles/materialize-css/js/materialize.min.js' %}"></script>
   {% block head %}{% endblock %}
 </head>
-<body class="dark">
+<body>
   {% include 'includes/header.html' %}
-  <div class="container contents pad_header">
-    {% if messages %}
-      <div class="notifications">
-        {% for message in messages %}
-          <div class="notification">{{ message }}</div>
-        {% endfor %}
-      </div>
-    {% endif %}
-    {% block content %}{% endblock %}
+  <div class="content more_padding">
+    <div class="container">
+      {% if messages %}
+        <div class="notifications">
+          {% for message in messages %}
+            <div class="notification">{{ message }}</div>
+          {% endfor %}
+        </div>
+      {% endif %}
+      {% block content %}{% endblock %}
+    </div>
   </div>
 </body>
 </html>

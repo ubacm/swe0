@@ -11,7 +11,7 @@
       <p>You are not logged in.</p>
       <div class="buttons">
         <a href="{% url 'social:begin' 'google-oauth2' %}?next={{ request.GET.next }}">
-          <img src="{% static 'sign_in_with_google.png' %}"
+          <img src="{% static 'assets/logos/sign_in_with_google.png' %}"
                alt="Sign in with Google">
         </a>
         <a href="{% url 'social:begin' 'slack' %}?next={{ request.GET.next }}">
