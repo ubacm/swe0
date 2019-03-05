@@ -1,11 +1,30 @@
 import os
 
+from django.contrib.auth import get_user_model
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.messages.views import SuccessMessageMixin
+from django.shortcuts import get_object_or_404
 from django.urls import reverse_lazy
-from django.views.generic import UpdateView
+from django.views.generic import DetailView, UpdateView
 
 from swe0.profiles.models import Profile
+
+
+User = get_user_model()
+
+
+class ProfileDetailView(DetailView):
+    model = Profile
+
+    def get_object(self, queryset=None):
+        if queryset is None:
+            queryset = self.get_queryset()
+
+        user_id = self.kwargs.get('user_id')
+        user = get_object_or_404(User, id=user_id)
+
+        obj, created = queryset.get_or_create(user=user)
+        return obj
 
 
 class ResumeUploadView(LoginRequiredMixin, SuccessMessageMixin, UpdateView):

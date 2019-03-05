@@ -1,0 +1,13 @@
+<title>Profile for {{ profile.user.name }}</title>
+
+<h1>{{ profile.user.name }}</h1>
+
+<dl>
+  <dt>Email address</dt>
+  <dd>{{ profile.user.email }}</dd>
+
+  {% if profile.resume %}
+  <dt>Resume</dt>
+  <dd><a href="{{ profile.resume.url }}">view</a></dd>
+  {% endif %}
+</dl>
