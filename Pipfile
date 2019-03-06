@@ -9,6 +9,7 @@ verify_ssl = true
 dj-database-url = "*"
 django = "*"
 gunicorn = "*"
+pillow = "*"
 psycopg2-binary = "*"
 requests = "*"
 social-auth-app-django = "*"

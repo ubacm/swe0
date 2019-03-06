@@ -1,10 +1,10 @@
 import os
 
 from django.contrib.auth import get_user_model
-from django.contrib.auth.mixins import LoginRequiredMixin
+from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 from django.contrib.messages.views import SuccessMessageMixin
 from django.shortcuts import get_object_or_404
-from django.urls import reverse_lazy
+from django.urls import reverse, reverse_lazy
 from django.views.generic import DetailView, UpdateView
 
 from swe0.profiles.models import Profile
@@ -13,8 +13,8 @@ from swe0.profiles.models import Profile
 User = get_user_model()
 
 
-class ProfileDetailView(DetailView):
-    model = Profile
+class ProfileFromUserIdMixin:
+    """Provide a user's profile using user_id matched in the URL."""
 
     def get_object(self, queryset=None):
         if queryset is None:
@@ -25,6 +25,24 @@ class ProfileDetailView(DetailView):
 
         obj, created = queryset.get_or_create(user=user)
         return obj
+
+
+class ProfileDetailView(ProfileFromUserIdMixin, DetailView):
+    model = Profile
+
+
+# TODO: delete old pictures and resumes
+class ProfileUpdateView(UserPassesTestMixin, ProfileFromUserIdMixin, UpdateView):
+    model = Profile
+    fields = ('biography', 'graduation_year', 'personal_website', 'picture', 'resume')
+
+    def test_func(self):
+        """Allow users to only edit their own profiles."""
+        profile = self.get_object()
+        return self.request.user == profile.user
+
+    def get_success_url(self):
+        return reverse('profiles:view', kwargs={'user_id': self.object.user.id})
 
 
 class ResumeUploadView(LoginRequiredMixin, SuccessMessageMixin, UpdateView):
