@@ -1,0 +1,20 @@
+<title>Transactions</title>
+
+<h1>Transactions</h1>
+
+<table>
+  <tr>
+    <th>Time</th>
+    <th>User</th>
+    <th>Amount</th>
+    <th>Comment</th>
+  </tr>
+  {% for transaction in transaction_list %}
+  <tr>
+    <td>{{ transaction.time }}</td>
+    <td>{{ transaction.user }}</td>
+    <td>{{ transaction.amount }}</td>
+    <td>{{ transaction.comment }}</td>
+  </tr>
+  {% endfor %}
+</table>
