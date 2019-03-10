@@ -44,6 +44,7 @@ INSTALLED_APPS = [
     'swe0.accounts',
     'swe0.core',
     'swe0.events',
+    'swe0.ledger',
     'swe0.polls',
     'swe0.profiles',
     'swe0.slack',
