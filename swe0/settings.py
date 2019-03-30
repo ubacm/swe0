@@ -111,6 +111,7 @@ AUTH_PASSWORD_VALIDATORS = [
 
 AUTH_USER_MODEL = 'accounts.User'
 
+LOGIN_URL = 'accounts:log-in'
 LOGIN_REDIRECT_URL = 'core:home'
 
 AUTHENTICATION_BACKENDS = [

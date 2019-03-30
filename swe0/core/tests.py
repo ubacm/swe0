@@ -1,3 +1,8 @@
 from django.test import TestCase
 
-# Create your tests here.
+
+class CoreTests(TestCase):
+
+    def test_admin_login_redirect(self):
+        response = self.client.get('/admin/login/')
+        self.assertRedirects(response, '/accounts/login/')
