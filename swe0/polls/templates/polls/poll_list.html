@@ -4,7 +4,7 @@
 <dl>
 {% for poll in poll_list %}
   <dt>
-    {{ poll.name }}
+    <a href="{{ poll.get_absolute_url }}">{{ poll.name }}</a>
     {% if poll.event %}({{ poll.event }}){% endif %}
   </dt>
 
