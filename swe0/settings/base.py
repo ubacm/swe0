@@ -86,7 +86,7 @@ WSGI_APPLICATION = 'swe0.wsgi.application'
 # Override by specifying the DATABASE_URL environment variable.
 DATABASES = {
     'default': dj_database_url.config(
-        default='sqlite:///{}'.format(os.path.join(BASE_DIR, 'db.sqlite3')),
+        default='sqlite:///{}'.format(os.path.join(BASE_DIR, '..', 'db.sqlite3')),
     ),
 }
 
@@ -160,10 +160,10 @@ USE_TZ = True
 
 STATIC_ROOT = os.getenv('STATIC_ROOT')
 STATIC_URL = '/static/'
-STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static')]
+STATICFILES_DIRS = [os.path.join(BASE_DIR, '..', 'static')]
 
 
-MEDIA_ROOT = os.getenv('MEDIA_ROOT', os.path.join(BASE_DIR, 'media'))
+MEDIA_ROOT = os.getenv('MEDIA_ROOT', os.path.join(BASE_DIR, '..', 'media'))
 MEDIA_URL = '/media/'
 
 
