@@ -1,3 +1,8 @@
-from django.shortcuts import render
+from django.views.generic import ListView
 
-# Create your views here.
+from swe0.polls.models import Poll
+
+
+class PollList(ListView):
+    model = Poll
+    ordering = ['-id']

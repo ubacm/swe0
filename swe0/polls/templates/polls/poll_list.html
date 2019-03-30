@@ -1,0 +1,23 @@
+<title>Polls</title>
+
+<h1>Polls</h1>
+<dl>
+{% for poll in poll_list %}
+  <dt>
+    {{ poll.name }}
+    {% if poll.event %}({{ poll.event }}){% endif %}
+  </dt>
+
+  {% if poll.is_accepting_entries %}
+    <dd>Accepting entries</dd>
+  {% else %}
+    <dd>Not accepting entries</dd>
+  {% endif %}
+
+  {% if poll.is_accepting_votes %}
+    <dd>Voting is open</dd>
+  {% else %}
+    <dd>Voting is closed</dd>
+  {% endif %}
+{% endfor %}
+</dl>

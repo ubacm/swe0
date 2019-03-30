@@ -24,6 +24,7 @@ urlpatterns = [
     path('accounts/', include('swe0.accounts.urls')),
     path('accounts/', include('social_django.urls', namespace='social')),
     path('events/', include('swe0.events.urls')),
+    path('polls/', include('swe0.polls.urls')),
     path('profiles/', include('swe0.profiles.urls')),
     path('slack/', include('swe0.slack.urls')),
 ]
