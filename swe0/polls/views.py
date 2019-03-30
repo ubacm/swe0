@@ -1,6 +1,10 @@
 from django.views.generic import DetailView, ListView
 
-from swe0.polls.models import Poll
+from swe0.polls.models import Entry, Poll
+
+
+class EntryDetail(DetailView):
+    model = Entry
 
 
 class PollDetail(DetailView):

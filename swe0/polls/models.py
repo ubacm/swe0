@@ -14,6 +14,9 @@ class Entry(models.Model):
     def __str__(self):
         return self.name
 
+    def get_absolute_url(self):
+        return reverse('polls:entry-detail', kwargs={'pk': self.pk})
+
 
 class Poll(models.Model):
     name = models.CharField(max_length=50)

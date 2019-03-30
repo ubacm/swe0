@@ -6,6 +6,6 @@
 <h2>Entries</h2>
 <ul>
 {% for entry in poll.entries.all %}
-  <li>{{ entry }}</li>
+  <li><a href="{{ entry.get_absolute_url }}">{{ entry }}</a></li>
 {% endfor %}
 </ul>
