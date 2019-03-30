@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block title %}Local log in{% endblock %}
+
+{% block content %}
+  <div class="dialog">
+    <div class="auth_sign_in">
+      <h3>Sign in with local account</h3>
+      <p><a href="{% url 'accounts:log-in' %}?next={{ request.GET.next }}">Use SSO instead</a></p>
+      <form method="post">
+        {% csrf_token %}
+        {{ form }}
+        <button class="btn waves-effect waves-light">
+          Sign in
+        </button>
+      </form>
+    </div>
+  </div>
+{% endblock %}

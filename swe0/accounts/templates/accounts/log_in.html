@@ -20,6 +20,13 @@
                alt="Sign in with Slack">
         </a>
       </div>
+      {% if show_local_login_link %}
+        <div style="margin-top: 10px;">
+          <a href="{% url 'accounts:local-log-in' %}?next={{ request.GET.next }}" class="btn waves-effect waves-light">
+            Use a local account
+          </a>
+        </div>
+      {% endif %}
     </div>
   </div>
 {% endblock %}
