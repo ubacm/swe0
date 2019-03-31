@@ -1,23 +1,47 @@
-<title>Polls</title>
+{% extends 'base.html' %}
 
+{% block title %}Poll{% endblock %}
+
+{% block content %}
 <h1>Polls</h1>
 <dl>
-{% for poll in poll_list %}
-  <dt>
-    <a href="{{ poll.get_absolute_url }}">{{ poll.name }}</a>
-    {% if poll.event %}({{ poll.event }}){% endif %}
-  </dt>
+{% if poll_list %}
+  {% for poll in poll_list %}
+  <div class="card {% if poll.is_accepting_votes %}grey lighten-5{% else %}grey darken-1{% endif %}">
+    <div class="card-content white-text">
+      <span class="card-title">
+        <a class="{% if poll.is_accepting_votes %}teal-text{% endif %}" href="{{ poll.get_absolute_url }}">{{ poll.name }}</a>
+      </span>
+      
+      {% if poll.event %}
+      <p class="{% if poll.is_accepting_votes %}black-text{% endif %}">
+        <em>for {{ poll.event }}</em>
+        <br />
+        <br />
+      </p>
+      {% endif %}
+      
+      <p class="{% if poll.is_accepting_votes %}black-text{% endif %}">
+        {{ poll.description }}
+      </p>
+    </div>
+    <div class="card-action">
+      <a class="{% if poll.is_accepting_votes %}teal-text{% endif %}" href="{{ poll.get_absolute_url }}">View Poll</a>
+      {% if poll.is_accepting_votes %}
+        <span class="badge green white-text">Voting Open</span>
 
-  {% if poll.is_accepting_entries %}
-    <dd>Accepting entries</dd>
-  {% else %}
-    <dd>Not accepting entries</dd>
-  {% endif %}
-
-  {% if poll.is_accepting_votes %}
-    <dd>Voting is open</dd>
-  {% else %}
-    <dd>Voting is closed</dd>
-  {% endif %}
-{% endfor %}
-</dl>
+        {% if poll.is_accepting_entries %}
+          <span class="badge orange darken-1 white-text">
+            Submissions Open
+          </span>
+        {% endif %}
+      {% else %}
+        <span class="badge red white-text">Voting Closed</span>
+      {% endif %}
+    </div>
+  </div>
+  {% endfor %}
+{% else %}
+  <p>No polls available.</p>
+{% endif %}
+{% endblock %}

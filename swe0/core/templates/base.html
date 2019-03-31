@@ -9,7 +9,7 @@
   <link rel="stylesheet" type="text/css" href="{% static 'styles/materialize-css/css/materialize.min.css' %}">
   <link rel="stylesheet" type="text/css" href="{% static 'styles/index.css' %}">
   <link rel="stylesheet" type="text/css" href="{% static 'styles/header.css' %}">
-  <link href="https://use.fontawesome.com/releases/v5.0.2/css/all.css" rel="stylesheet">
+  <link href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css?family=Roboto:400,700|Roboto+Mono" rel="stylesheet"> 
   <script src="{% static 'styles/materialize-css/js/materialize.min.js' %}"></script>
   {% block head %}{% endblock %}
@@ -19,12 +19,13 @@
   <div class="content more_padding">
     <div class="container">
       {% if messages %}
-        <div class="notifications">
-          {% for message in messages %}
-            <div class="notification">{{ message }}</div>
-          {% endfor %}
-        </div>
+      {% for message in messages %}
+        <script>
+          M.toast({html: '{{ message }}'})
+        </script>
+      {% endfor %}
       {% endif %}
+
       {% block content %}{% endblock %}
     </div>
   </div>

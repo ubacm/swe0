@@ -1,14 +1,28 @@
-<title>Entry: {{ entry.name }}</title>
+{% extends 'base.html' %}
 
-<h1>Entry: {{ entry.name }}</h1>
-{{ entry.description|linebreaks }}
+{% block title %}{{ entry.name }} - Entry{% endblock %}
 
-<h2>Polls</h2>
-<ul>
-{% for poll in polls %}
-  <li>
-    <a href="{{ poll.get_absolute_url }}">{{ poll }}</a>
-    (<a href="{% url 'polls:vote' poll_pk=poll.pk entry_pk=entry.pk %}">vote</a>)
+{% block content %}
+<ul class="collection">
+  <li class="collection-item">
+    <h1>{{ entry.name }}</h1>
+    <p>
+      {{ entry.description|linebreaks }}        
+    </p>
   </li>
-{% endfor %}
 </ul>
+<br />
+
+<h5>Vote for Submission</h5>
+<ul class="collection">
+  {% for poll in polls %}
+  <li class="collection-item">
+    <a href="{% url 'polls:vote' poll_pk=poll.pk entry_pk=entry.pk %}">
+      Vote {{ entry.name }} in {{ poll }} {% if poll.event %}({{ poll.event }}){% endif %}
+    </a>
+    <a class="secondary-content" href="{{ poll.get_absolute_url }}">View Poll</a>
+  </li>
+  {% endfor %}
+</ul>
+
+{% endblock %}

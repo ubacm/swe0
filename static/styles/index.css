@@ -33,6 +33,10 @@ body {
   list-style-type: disc;
   margin-left: 20px;
 }
+.content ul > li.collection-item {
+  list-style-type: none;
+  margin-left: 0;
+}
 
 .user {
   align-items: center;
@@ -64,4 +68,14 @@ body {
   margin: 0 auto;
   text-align: center;
   width: 100%;
+}
+
+.btn,
+.btn-large {
+  display: inline-flex;
+  align-items: center;
+}
+.btn i,
+.btn-large i {
+  margin-right: 10px;
 }

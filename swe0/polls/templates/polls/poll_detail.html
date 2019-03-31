@@ -1,11 +1,63 @@
-<title>Poll: {{ poll.name }}</title>
+{% extends 'base.html' %}
 
-<h1>Poll: {{ poll.name }}</h1>
-{{ poll.description|linebreaks }}
+{% block title %}{{ poll.name }} - Poll{% endblock %}
 
-<h2>Entries</h2>
-<ul>
-{% for entry in poll.entries.all %}
-  <li><a href="{{ entry.get_absolute_url }}">{{ entry }}</a></li>
-{% endfor %}
+{% block content %}
+
+<a href="{% url 'polls:list' %}">Return to All Polls</a>
+
+<ul class="collection">
+  <li class="collection-item">
+    {% if poll.is_accepting_votes %}
+      <span class="badge green white-text">Voting Open</span>
+    
+      {% if poll.is_accepting_entries %}
+        <span class="badge orange darken-1 white-text">
+          Submissions Open
+        </span>
+      {% endif %}
+    {% else %}
+      <span class="badge red white-text">Voting Closed</span>
+    {% endif %}
+
+    <h1>{{ poll.name }}</h1>
+    <p>
+      {{ poll.description|linebreaks }}
+    </p>
+  </li>
 </ul>
+
+<div class="right-align">
+  {% if poll.is_accepting_entries %}
+  <a class="btn waves-effect waves-light green" href="#">
+    <i class="fas fa-envelope-open-text"></i> Submit Entry
+  </a>
+  <br />
+  <br />
+  {% endif %}
+</div>
+
+<div class="row">
+  {% for entry in poll.entries.all %}
+  <div class="col s12 m6">
+    <div class="card {% if poll.is_accepting_votes %}grey lighten-5{% else %}grey darken-1{% endif %}">
+      <div class="card-content">
+        <span class="card-title">
+          <a class="{% if poll.is_accepting_votes %}teal-text{% endif %}" href="{{ entry.get_absolute_url }}">
+            {{ entry }}
+          </a>
+        </span>
+        <p class="{% if poll.is_accepting_votes %}black-text{% endif %}">{{ entry.description }}</p>
+      </div>
+      <div class="card-action">
+        <a class="{% if poll.is_accepting_votes %}teal-text{% endif %}" href="{{ entry.get_absolute_url }}">View Details</a>
+        
+        {% if poll.is_accepting_votes %}
+          <a class="{% if poll.is_accepting_votes %}teal-text{% endif %}" href="{% url 'polls:vote' poll_pk=poll.pk entry_pk=entry.pk %}">Vote</a>
+        {% endif %}
+      </div>
+    </div>
+  </div>
+  {% endfor %}
+</div>
+{% endblock %}

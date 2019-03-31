@@ -1,4 +1,10 @@
-<title>Vote</title>
+{% extends 'base.html' %}
+
+{% block title %}{{ poll.name }} - Vote{% endblock %}
+
+{% block content %}
+
+<a href="{{ entry.get_absolute_url }}">Return to {{ entry }}</a>
 
 <h1>Vote</h1>
 <p>
@@ -6,9 +12,14 @@
   <a href="{{ entry.get_absolute_url }}">{{ entry }}</a>
   in
   <a href="{{ poll.get_absolute_url }}">{{ poll }}</a>?
+  <br />
+  <br />
 </p>
+
 <form method="post">
   {% csrf_token %}
   {{ form.as_p }}
-  <button>Vote</button>
+  <button class="btn-large"><i class="fas fa-vote-yea"></i> Confirm Vote</button>
+  <a class="btn-flat" href="{{ poll.get_absolute_url }}">Cancel</a>
 </form>
+{% endblock %}
