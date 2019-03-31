@@ -1,0 +1,14 @@
+<title>Vote</title>
+
+<h1>Vote</h1>
+<p>
+  Are you sure you want to vote for
+  <a href="{{ entry.get_absolute_url }}">{{ entry }}</a>
+  in
+  <a href="{{ poll.get_absolute_url }}">{{ poll }}</a>?
+</p>
+<form method="post">
+  {% csrf_token %}
+  {{ form.as_p }}
+  <button>Vote</button>
+</form>

@@ -2,3 +2,13 @@
 
 <h1>Entry: {{ entry.name }}</h1>
 {{ entry.description|linebreaks }}
+
+<h2>Polls</h2>
+<ul>
+{% for poll in polls %}
+  <li>
+    <a href="{{ poll.get_absolute_url }}">{{ poll }}</a>
+    (<a href="{% url 'polls:vote' poll_pk=poll.pk entry_pk=entry.pk %}">vote</a>)
+  </li>
+{% endfor %}
+</ul>

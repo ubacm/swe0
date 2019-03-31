@@ -1,0 +1,8 @@
+<title>Create entry</title>
+
+<h1>Create entry</h1>
+<form method="post">
+  {% csrf_token %}
+  {{ form.as_p }}
+  <button>Create</button>
+</form>
