@@ -4,12 +4,13 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from django.shortcuts import get_object_or_404
 from django.views.generic import CreateView, DetailView, FormView, ListView
 
+from swe0.polls.forms import EntryForm
 from swe0.polls.models import Entry, Poll, Vote
 
 
 class EntryCreateView(LoginRequiredMixin, CreateView):
-    model = Entry
-    fields = ('name', 'description')
+    template_name = 'polls/entry_form.html'
+    form_class = EntryForm
 
 
 class EntryDetailView(DetailView):
