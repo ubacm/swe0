@@ -20,3 +20,4 @@ class PollAdmin(admin.ModelAdmin):
 @admin.register(models.Vote)
 class VoteAdmin(admin.ModelAdmin):
     list_display = ('poll', 'user', 'entry')
+    list_filter = ('poll', 'entry')
