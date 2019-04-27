@@ -1,6 +1,7 @@
 from django import forms
 from django.contrib import messages
 from django.contrib.auth.mixins import LoginRequiredMixin
+from django.db.models import Count
 from django.shortcuts import get_object_or_404
 from django.views.generic import CreateView, DetailView, FormView, ListView, UpdateView
 
@@ -44,6 +45,21 @@ class PollDetailView(DetailView):
 class PollListView(ListView):
     model = Poll
     ordering = ['-id']
+
+
+class PollVotesView(PermissionRequiredMixin, PollDetailView):
+    permission_required = 'polls.view_poll'
+    template_name = 'polls/poll_votes.html'
+
+    def get_context_data(self, **kwargs):
+        data = super().get_context_data(**kwargs)
+        votes = (Vote.objects
+            .filter(poll=self.object)
+            .values('entry', 'entry__name')
+            .annotate(count=Count('entry'))
+            .order_by('-count')
+        )
+        return {**data, 'votes': votes}
 
 
 class VoteView(LoginRequiredMixin, FormView):

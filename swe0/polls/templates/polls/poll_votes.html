@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+
+{% block title %}{{ poll.name }} - Votes{% endblock %}
+
+{% block content %}
+<h1>Votes for <a href="{{ poll.get_absolute_url }}">{{ poll.name }}</a></h1>
+<ol>
+  {% for vote in votes %}
+  <li>{{ vote.count }} for <a href="{% url 'polls:entry-detail' vote.entry %}">{{ vote.entry__name }}</a></li>
+  {% endfor %}
+</ol>
+{% endblock %}
