@@ -10,7 +10,7 @@ class EntryForm(forms.ModelForm):
 
     class Meta:
         model = Entry
-        fields = ('name', 'description')
+        fields = ('name', 'description', 'website', 'image')
 
     def save(self, commit=True):
         entry = super().save(commit)

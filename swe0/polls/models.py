@@ -1,12 +1,34 @@
+import os
+import uuid
+
 from django.conf import settings
+from django.core.validators import FileExtensionValidator
 from django.db import models
 from django.urls import reverse
+
+
+def _generate_picture_filename(_instance, original_filename):
+    extension = os.path.splitext(original_filename)[1].lower()
+    while True:
+        filename = os.path.join(
+            'polls',
+            'entries',
+            '{}{}'.format(uuid.uuid4().hex, extension),
+        )
+        if not Entry.objects.filter(image=filename).exists():
+            return filename
 
 
 class Entry(models.Model):
     """An Entry is an entity that can be voted on in a poll."""
     name = models.CharField(max_length=50)
     description = models.TextField()
+    image = models.ImageField(
+        upload_to=_generate_picture_filename,
+        validators=[FileExtensionValidator(['gif', 'jpeg', 'jpg', 'png', 'svg'])],
+        blank=True,
+    )
+    website = models.URLField(blank=True)
 
     class Meta:
         verbose_name_plural = 'entries'
