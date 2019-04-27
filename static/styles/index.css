@@ -29,14 +29,6 @@ body {
   width: 100%;
   height: auto;
 }
-.content ul:not(.browser-default) > li {
-  list-style-type: disc;
-  margin-left: 20px;
-}
-.content ul > li.collection-item {
-  list-style-type: none;
-  margin-left: 0;
-}
 
 .user {
   align-items: center;

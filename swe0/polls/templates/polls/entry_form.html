@@ -1,8 +1,14 @@
-<title>Create entry</title>
+{% extends 'base.html' %}
 
-<h1>Create entry</h1>
+{% block title %}Polls - New Entry{% endblock %}
+
+{% block content %}
+<h1>New Entry</h1>
+
 <form method="post">
   {% csrf_token %}
   {{ form.as_p }}
-  <button>Create</button>
+  <br />
+  <button class="btn btn-large">Submit</button>
 </form>
+{% endblock %}

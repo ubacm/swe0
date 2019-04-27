@@ -29,7 +29,7 @@
 
 <div class="right-align">
   {% if poll.is_accepting_entries %}
-  <a class="btn waves-effect waves-light green" href="#">
+  <a class="btn waves-effect waves-light green" href="{% url 'polls:entry-create' %}">
     <i class="fas fa-envelope-open-text"></i> Submit Entry
   </a>
   <br />
