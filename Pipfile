@@ -8,6 +8,7 @@ verify_ssl = true
 [packages]
 dj-database-url = "*"
 django = "*"
+django-guardian = "*"
 gunicorn = "*"
 psycopg2-binary = "*"
 requests = "*"

@@ -2,6 +2,8 @@ from django.contrib.auth.models import AbstractBaseUser, BaseUserManager, Permis
 from django.db import models
 from django.utils import timezone
 
+from guardian.mixins import GuardianUserMixin
+
 
 class UserManager(BaseUserManager):
     def _create_user(self, email, password, **kwargs):
@@ -28,7 +30,7 @@ class UserManager(BaseUserManager):
         return self._create_user(email, password, **kwargs)
 
 
-class User(AbstractBaseUser, PermissionsMixin):
+class User(GuardianUserMixin, AbstractBaseUser, PermissionsMixin):
     email = models.EmailField('email address', max_length=255, unique=True)
     name = models.CharField(max_length=100)  # Note: Slack's limit is 80 chars.
 

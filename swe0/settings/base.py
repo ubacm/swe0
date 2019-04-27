@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'guardian',
     'social_django',
     'swe0.accounts',
     'swe0.core',
@@ -116,6 +117,7 @@ LOGIN_REDIRECT_URL = 'core:home'
 
 AUTHENTICATION_BACKENDS = [
     'django.contrib.auth.backends.ModelBackend',
+    'guardian.backends.ObjectPermissionBackend',
     'social_core.backends.google.GoogleOAuth2',
     'social_core.backends.slack.SlackOAuth2',
 ]
@@ -181,3 +183,6 @@ SWE0_SLACK_SIGNING_SECRET = os.getenv('SLACK_SIGNING_SECRET')
 
 
 SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
+
+
+GUARDIAN_MONKEY_PATCH = False

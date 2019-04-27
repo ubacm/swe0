@@ -1,9 +1,13 @@
 from django.contrib import admin
 
+from guardian.admin import GuardedModelAdmin
+
 from swe0.polls import models
 
 
-admin.site.register(models.Entry)
+@admin.register(models.Entry)
+class EntryAdmin(GuardedModelAdmin):
+    pass
 
 
 class PollEntriesInline(admin.TabularInline):

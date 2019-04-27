@@ -2,7 +2,10 @@ from django import forms
 from django.contrib import messages
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.shortcuts import get_object_or_404
-from django.views.generic import CreateView, DetailView, FormView, ListView
+from django.views.generic import CreateView, DetailView, FormView, ListView, UpdateView
+
+from guardian.mixins import PermissionRequiredMixin
+from guardian.shortcuts import assign_perm
 
 from swe0.polls.forms import EntryForm
 from swe0.polls.models import Entry, Poll, Vote
@@ -12,6 +15,10 @@ class EntryCreateView(LoginRequiredMixin, CreateView):
     template_name = 'polls/entry_form.html'
     form_class = EntryForm
 
+    def form_valid(self, form):
+        response = super().form_valid(form)
+        assign_perm('polls.change_entry', self.request.user, self.object)
+        return response
 
 class EntryDetailView(DetailView):
     model = Entry
@@ -21,6 +28,13 @@ class EntryDetailView(DetailView):
             **kwargs,
             polls=self.object.polls.filter(is_accepting_votes=True),
         )
+
+
+class EntryUpdateView(PermissionRequiredMixin, UpdateView):
+    permission_required = 'polls.change_entry'
+    template_name = 'polls/entry_form.html'
+    model = Entry
+    fields = ('name', 'description', 'website', 'image')
 
 
 class PollDetailView(DetailView):

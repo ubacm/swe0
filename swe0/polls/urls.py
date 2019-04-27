@@ -11,4 +11,5 @@ urlpatterns = [
     path('<int:poll_pk>/vote/<int:entry_pk>/', views.VoteView.as_view(), name='vote'),
     path('entries/create/', views.EntryCreateView.as_view(), name='entry-create'),
     path('entries/<int:pk>/', views.EntryDetailView.as_view(), name='entry-detail'),
+    path('entries/<int:pk>/edit/', views.EntryUpdateView.as_view(), name='entry-update'),
 ]
