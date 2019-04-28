@@ -48,7 +48,7 @@ class PollListView(ListView):
 
 
 class PollVotesView(PermissionRequiredMixin, PollDetailView):
-    permission_required = 'polls.view_poll'
+    permission_required = 'polls.change_poll'
     template_name = 'polls/poll_votes.html'
 
     def get_context_data(self, **kwargs):
