@@ -9,6 +9,15 @@
     <p>
       {{ entry.description|linebreaks }}        
     </p>
+    {% if entry.website %}
+    <p>
+      <a href="{{ entry.website }}">{{ entry.website }}</a>
+    </p>
+    {% endif %}
+    {% if entry.image %}
+      <img src="{{ entry.image.url }}" />
+    {% endif %}
+    <a class="btn" href="{% url 'polls:entry-update' pk=entry.pk %}">Edit</a>
   </li>
 </ul>
 <br />
