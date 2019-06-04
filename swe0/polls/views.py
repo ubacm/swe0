@@ -21,6 +21,7 @@ class EntryCreateView(LoginRequiredMixin, CreateView):
         assign_perm('polls.change_entry', self.request.user, self.object)
         return response
 
+
 class EntryDetailView(DetailView):
     model = Entry
 
