@@ -7,7 +7,7 @@ verify_ssl = true
 
 [packages]
 dj-database-url = "*"
-django = "*"
+django = ">=2.2.9, <3"
 django-guardian = "*"
 gunicorn = "*"
 pillow = "*"
